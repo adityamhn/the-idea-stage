@@ -1,0 +1,5 @@
+[mcp_servers.applyto_realfast]
+url = "https://join.realfast.ai/mcp/core"
+
+[mcp_servers.applyto_realfast.http_headers]
+Authorization = "Bearer applyto_x9oK1eSRotPWKR5Sv8EjQMvk0Yxr7tVAOXP_mtgHBd0"

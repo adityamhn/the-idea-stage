@@ -1,0 +1,31 @@
+# Render blueprint for the FastAPI service (the always-on API).
+# The web app deploys separately on Vercel (root dir: web/).
+# Secrets are marked sync:false — set them in the Render dashboard, never in git.
+services:
+  - type: web
+    name: idea-stage-api
+    runtime: python
+    plan: free
+    rootDir: .
+    buildCommand: pip install -e .
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: IDEA_STAGE_ALLOW_ORIGINS
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
