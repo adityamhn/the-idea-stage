@@ -2,3 +2,4 @@
 .env.local
 .next
 *.tsbuildinfo
+.vercel
