@@ -48,7 +48,7 @@ export function BuyCredits({ onClose }: { onClose: () => void }) {
           <p className="mt-3 text-sm text-muted">Loading…</p>
         ) : !data.configured ? (
           <p className="mt-3 text-sm text-muted">
-            Payments aren&apos;t enabled yet (Razorpay keys not configured).
+            Payments are not enabled right now.
           </p>
         ) : (
           <div className="mt-4 grid gap-3 sm:grid-cols-3">

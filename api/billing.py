@@ -36,8 +36,17 @@ PACKS: dict[str, dict] = {
 }
 
 
+def payments_enabled() -> bool:
+    """Master kill-switch. Off until explicitly enabled, so a fresh deploy never
+    accepts payments before Razorpay approval. Set PAYMENTS_ENABLED=true to go live."""
+    return os.environ.get("PAYMENTS_ENABLED", "").strip().lower() in ("1", "true", "yes", "on")
+
+
 def configured() -> bool:
-    return bool(os.environ.get("RAZORPAY_KEY_ID") and os.environ.get("RAZORPAY_KEY_SECRET"))
+    """Billing is live and usable: master switch on AND Razorpay keys present."""
+    return payments_enabled() and bool(
+        os.environ.get("RAZORPAY_KEY_ID") and os.environ.get("RAZORPAY_KEY_SECRET")
+    )
 
 
 def _client():
